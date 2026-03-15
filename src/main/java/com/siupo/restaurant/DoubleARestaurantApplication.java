@@ -8,8 +8,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 @EnableConfigurationProperties
-public class SiupoRestaurantApplication {
+public class DoubleARestaurantApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SiupoRestaurantApplication.class, args);
+		SpringApplication.run(DoubleARestaurantApplication.class, args);
 	}
 }
