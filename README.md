@@ -1,195 +1,126 @@
-# 🍽️ Siupo Restaurant - Backend
+# Double A Restaurant - Backend
 
-> Dự án Spring Boot REST API cho hệ thống quản lý nhà hàng Siupo.
+Dự án Spring Boot REST API cho hệ thống quản lý nhà hàng.
 
 ---
 
-## 🛠️ Công nghệ sử dụng
+## Công nghệ sử dụng
 
-- **Spring Boot 3**
-- **Java 21**
-- **Maven Wrapper**
-- **Spring Data JPA**
-- **Spring Security + JWT**
-- **Spring Mail**
-- **Lombok**
-- **MySQL**
-- **Hibernate Validator**
-- **JJWT**
+### Môi trường cài đặt
 
-## 📋 Yêu cầu hệ thống
+| Công nghệ | Loại | Mục đích |
+|-----------|------|---------|
+| Java 21 | Ngôn ngữ lập trình | Ngôn ngữ và môi trường chạy ứng dụng backend |
+| Spring Boot 3 | Framework backend | Framework giúp xây dựng ứng dụng web/API Java nhanh, cấu hình tự động |
+| Maven Wrapper | Công cụ build | Dùng để build project và quản lý thư viện |
+| MySQL | Database | Hệ quản trị cơ sở dữ liệu quan hệ lưu trữ dữ liệu |
 
-- **Java** >= 21 (21)
-- **Maven** >= 3.9 (4.0.0)
-- **MySQL**
+### Thư viện hỗ trợ backend
 
-## 🚀 Cài đặt và chạy dự án
+| Thư viện | Mục đích |
+|---------|---------|
+| Lombok | Tự động tạo getter, setter, constructor giúp code Java ngắn gọn |
+| Spring Data JPA | Giúp thao tác database bằng Java object |
+| Spring Security + JWT | Xác thực và phân quyền người dùng bằng token JWT |
+| Hibernate Validator | Kiểm tra dữ liệu đầu vào |
+| JJWT | Thư viện tạo và kiểm tra JSON Web Token |
+| Spring Mail | Dùng để gửi email từ ứng dụng |
 
-### 1. Clone repository
+---
 
-```bash
-# Clone về máy
-git clone https://github.com/hugn2k4/siupo-backend.git
-cd siupo-restaurant/back-end/siupo-restaurant
+## Hướng dẫn cài đặt
+
+### 1. Clone source
+
+Clone source code từ repository.
+
+---
+
+### 2. Thay đổi cấu hình
+
+Chỉnh sửa các tài khoản trong file:
+
+```
+application-dev.properties
 ```
 
-### 2. Cấu hình database & mail
+Cấu hình bao gồm:
 
-- Copy file `src/main/resources/application-example.properties` thành `application.properties` và sửa thông tin kết nối DB, email.
+**MySQL database**
 
-### 3. Cài đặt dependencies & chạy server
-
-```bash
-# Chạy bằng Maven Wrapper
-./mvnw spring-boot:run
+```
+username
+password
 ```
 
-Server mặc định chạy tại: `http://localhost:8080`
+**Spring Mail**
 
-## 📁 Cấu trúc thư mục
+```
+spring.mail.username
+spring.mail.password
+```
+
+**Cloudinary**
+
+```
+cloudinary.cloud-name
+cloudinary.api-key
+cloudinary.api-secret
+```
+
+**Google OAuth2**
+
+```
+client-id
+client-secret
+```
+
+---
+
+### 3. Tạo database
+
+Đảm bảo trong MySQL có database:
+
+```
+double_a_db
+```
+
+---
+
+### 4. Chạy ứng dụng
+
+Chạy file:
+
+```
+DoubleARestaurantApplication
+```
+
+---
+
+## Cấu trúc thư mục dự án
 
 ```
 src/
 ├── main/
-│   ├── java/com/siupo/restaurant/
-│   │   ├── controller/      # REST API controllers
-│   │   ├── service/         # Business logic
-│   │   ├── repository/      # JPA repositories
-│   │   ├── model/           # Entity/model
-│   │   ├── dto/             # DTO request/response
-│   │   ├── security/        # JWT, Security config
-│   │   ├── exception/       # Xử lý exception
-│   │   └── ...
+│   ├── java/com/BE
+│   │   ├── config/
+│   │   ├── controller/
+│   │   ├── dto/
+│   │   ├── enums/
+│   │   ├── exception/
+│   │   ├── mapper/
+│   │   ├── model/
+│   │   ├── service/
+│   │   ├── repository/
+│   │   ├── security/
+│   │   ├── service/
+│   │   ├── util/
+│   │   └── Application
+│
 │   └── resources/
 │       ├── application.properties
-│       └── ...
+│       └── application-dev.properties
 └── test/
+
     └── ...
 ```
-
-## 🔑 Các thư viện chính
-
-| Thư viện                       | Chức năng             |
-| ------------------------------ | --------------------- |
-| spring-boot-starter-web        | REST API              |
-| spring-boot-starter-data-jpa   | ORM, truy vấn DB      |
-| spring-boot-starter-security   | Bảo mật, JWT          |
-| spring-boot-starter-mail       | Gửi email xác thực    |
-| spring-boot-starter-validation | Validate dữ liệu      |
-| jjwt                           | Xử lý JWT             |
-| lombok                         | Giảm code boilerplate |
-| mysql-connector-j              | Kết nối MySQL         |
-
-## 📝 Các lệnh Maven cơ bản
-
-| Lệnh                     | Mô tả          |
-| ------------------------ | -------------- |
-| `./mvnw spring-boot:run` | Chạy server    |
-| `./mvnw clean package`   | Build project  |
-| `./mvnw test`            | Chạy unit test |
-
-## 🌿 Quy trình làm việc với Git & Workflow nhóm
-
-### Cấu trúc nhánh
-
-```
-main              # Nhánh chính (production)
-├── dev           # Nhánh phát triển
-├── feature/*     # Nhánh tính năng
-├── bugfix/*      # Nhánh sửa bug
-├── hotfix/*      # Nhánh sửa lỗi khẩn cấp
-├── <tên-thành-viên>  # Nhánh cá nhân (nếu muốn tách biệt)
-```
-
-### Quy tắc đặt tên nhánh
-
-- **Feature**: `feature/ten-tinh-nang` (ví dụ: `feature/user-authentication`)
-- **Bugfix**: `bugfix/ten-loi`
-- **Hotfix**: `hotfix/ten-loi-khan-cap`
-- **Cá nhân**: `yourname` (ví dụ: `hung`, `minh`, `kimanh`...)
-
-### Cách làm việc
-
-Mỗi thành viên có thể code ở:
-
-- Nhánh cá nhân (tên mình): phù hợp khi làm nhiều task nhỏ, thử nghiệm, hoặc muốn tách biệt hoàn toàn với các thành viên khác.
-- Nhánh chức năng (feature/ten-chuc-nang): phù hợp khi làm task lớn, làm việc nhóm nhỏ hoặc khi leader giao task cụ thể.
-
-> Tùy vào quy mô và tính chất công việc, leader sẽ phân công rõ nên code ở nhánh cá nhân hay nhánh chức năng. Khi hoàn thành, luôn tạo Pull Request về nhánh `dev` để review và hợp nhất code.
-
-### Ví dụ workflow
-
-#### 1. Bắt đầu task mới (theo nhánh cá nhân hoặc nhánh chức năng)
-
-```bash
-# Checkout nhánh dev
-git checkout dev
-git pull origin dev
-
-# Tạo nhánh mới (cá nhân hoặc chức năng)
-git checkout -b feature/ten-tinh-nang
-# hoặc
-git checkout -b <ten-ban>
-
-# Làm việc và commit
-git add .
-git commit -m "feat: thêm tính năng mới"
-```
-
-#### 2. Commit message convention
-
-```bash
-# Format: <type>: <description>
-feat: thêm tính năng đăng nhập
-fix: sửa lỗi responsive navbar
-docs: cập nhật README
-style: format code với prettier
-refactor: tối ưu component Header
-test: thêm unit test cho utils
-```
-
-#### 3. Push và tạo Pull Request
-
-```bash
-# Push nhánh lên remote
-git push origin feature/ten-tinh-nang
-# hoặc
-git push origin <ten-ban>
-
-# Tạo Pull Request từ nhánh đang làm -> dev
-# Review code → Merge → Xóa nhánh nếu muốn
-```
-
-#### 4. Sync với nhánh chính
-
-```bash
-# Cập nhật dev thường xuyên
-git checkout dev
-git pull origin dev
-
-# Rebase nhánh đang làm (nếu cần)
-git checkout feature/ten-tinh-nang
-git rebase dev
-# hoặc
-git checkout <ten-ban>
-git rebase dev
-```
-
-### Các lệnh Git hữu ích
-
-| Lệnh                                | Mô tả                       |
-| ----------------------------------- | --------------------------- |
-| `git status`                        | Kiểm tra trạng thái file    |
-| `git log --oneline`                 | Xem lịch sử commit ngắn gọn |
-| `git branch -a`                     | Xem tất cả nhánh            |
-| `git checkout -b <branch>`          | Tạo và chuyển nhánh mới     |
-| `git branch -d <branch>`            | Xóa nhánh local             |
-| `git push origin --delete <branch>` | Xóa nhánh remote            |
-
-### Quy tắc làm việc nhóm
-
-1. **Không push trực tiếp lên main/dev**
-2. **Luôn tạo Pull Request để review code**
-3. **Commit thường xuyên với message rõ ràng**
-4. **Pull dev trước khi tạo branch mới**
-5. **Kiểm tra conflict trước khi merge**
