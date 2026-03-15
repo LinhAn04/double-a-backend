@@ -32,13 +32,13 @@ Dự án Spring Boot REST API cho hệ thống quản lý nhà hàng.
 
 ### 1. Clone source
 
-Clone source code từ repository.
+Clone source code từ repository: https://github.com/LinhAn04/double-a-backend.git
 
 ---
 
 ### 2. Thay đổi cấu hình
 
-Chỉnh sửa các tài khoản trong file:
+Chỉnh sửa các tài khoản và key trong file:
 
 ```
 application-dev.properties
