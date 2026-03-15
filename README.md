@@ -116,7 +116,6 @@ src/
 │   │   ├── service/
 │   │   ├── util/
 │   │   └── Application
-│
 │   └── resources/
 │       ├── application.properties
 │       └── application-dev.properties
